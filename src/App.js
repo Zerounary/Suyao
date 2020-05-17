@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{useState} from 'react';
 import './App.css';
+import './tailwind.min.css'
+import SuyaoMap from './utils/SuyaoMap';
+import SuyaoTable from "./components/SuyaoTable";
+
 
 function App() {
+  let suyao = new SuyaoMap();
+  const [value, setValue] = useState('觜');
+  let onChange = (e) => {
+    console.log('e', e);
+    setValue(e.currentTarget.value);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" >
+      <select
+        value={value}
+        onChange={onChange}
+      >
+        {
+          suyao.getStarArray().map(star => {
+            return (<option key={star} value={star} >{star}</option>)
+          })
+        }
+      </select>
+      <SuyaoTable star={value} />
     </div>
   );
 }
