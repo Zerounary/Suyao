@@ -2,7 +2,13 @@ import React from 'react';
 import SuyaoMap from './../utils/SuyaoMap';
 
 
+
+/**
+ * 展示一个命星的星盘
+ * @param {Object}} props 
+ */
 function SuyaoTable (props){
+  // todo 输入一些关系，从命星的角度去观察
   const { star, relation } = props;
   let suyao = new SuyaoMap();
   let chart = suyao.getChart(star);
