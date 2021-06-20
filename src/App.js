@@ -8,7 +8,7 @@ import { useRequest } from '@umijs/hooks';
 
 function App() {
   return (
-    <Divide />
+    <SimpleSuyaoChart />
   )
 }
 

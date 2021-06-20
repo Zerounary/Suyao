@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import SuyaoMap from '../utils/SuyaoMap';
 import SuyaoTable from "./SuyaoTable";
+import SuayoCalendar from "./SuyaoCalendar";
 
 function SimpleSuyaoChart(props){
   let suyao = new SuyaoMap();
@@ -44,7 +45,7 @@ function SimpleSuyaoChart(props){
           <SuyaoTable star={value} />
         </div>
       </div>
-      
+      <SuayoCalendar />
     </div>
   );
 }
