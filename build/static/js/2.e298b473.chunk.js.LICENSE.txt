@@ -5,6 +5,14 @@ object-assign
 */
 
 /*!
+ * Chinese lunar calendar converter
+ * Support date from 1891.01.01 to 2100.12.31
+ *
+ * @author Lin Lou <lin.lou@hotmail.com>
+ * @license MIT
+ */
+
+/*!
 * screenfull
 * v5.0.2 - 2020-02-13
 * (c) Sindre Sorhus; MIT License
@@ -17,6 +25,16 @@ object-assign
  * Released under MIT license <https://lodash.com/license>
  * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
  * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */
+
+/**
+ * @license
+ * lodash 3.10.1 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modern -d -o ./index.js`
+ * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
  */
 
 /** @license React v0.19.1
