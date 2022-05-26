@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SuyaoMap from "./../utils/SuyaoMap";
-import Calendar from "@z-yue/calendar";
+import lunar from "lunar";
 import moment from "moment";
 
 /**
@@ -10,16 +10,16 @@ import moment from "moment";
 function SuyaoDayCell(props) {
   const { date } = props;
   let suyao = new SuyaoMap();
-  const calendar = new Calendar(date);
-  const { lunar } = calendar;
-  let star = suyao.getStar(lunar.month, lunar.date);
+  const lunarDate = lunar(date);
+  console.log("🚀 ~ file: SuyaoCalendar.js ~ line 14 ~ SuyaoDayCell ~ lunarDate", lunarDate)
+  let star = suyao.getStar(lunarDate.month, lunarDate.day);
   return (
     <div className="border p-3 block w-24 h-24 text-center">
       <p>
-        <span style={{ fontSize: "18px" }}>{calendar.date}</span>
+        <span style={{ fontSize: "18px" }}>{lunarDate.toDate().getDate()}</span>
         <br />
         <span style={{ fontSize: "12px" }}>
-          {lunar.date == 1 ? lunar.lunarMonth : lunar.lunarDate}
+          {lunarDate.day == 1 ? lunarDate.format('M') : lunarDate.format('D')}
         </span>
         <br />
         <span style={{ fontSize: "12px" }}>
