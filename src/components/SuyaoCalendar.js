@@ -11,18 +11,25 @@ function SuyaoDayCell(props) {
   const { date } = props;
   let suyao = new SuyaoMap();
   const lunarDate = lunar(date);
-  console.log("🚀 ~ file: SuyaoCalendar.js ~ line 14 ~ SuyaoDayCell ~ lunarDate", lunarDate)
+  const nowDate = lunar(new Date())
+  // console.log("🚀 ~ file: SuyaoCalendar.js ~ line 15 ~ SuyaoDayCell ~ nowDate", nowDate)
+  // console.log("🚀 ~ file: SuyaoCalendar.js ~ line 14 ~ SuyaoDayCell ~ lunarDate", lunarDate)
   let star = suyao.getStar(lunarDate.month, lunarDate.day);
+  let todayClass = '#000';
+  if(lunarDate.year === nowDate.year && lunarDate.month === nowDate.month && lunarDate.day === nowDate.day){
+    todayClass = '#f00';
+  }
+  console.log("🚀 ~ file: SuyaoCalendar.js ~ line 39 ~ SuyaoDayCell ~ todayClass", todayClass)
   return (
     <div className="border p-3 block w-24 h-24 text-center">
       <p>
-        <span style={{ fontSize: "18px" }}>{lunarDate.toDate().getDate()}</span>
+        <span style={{ fontSize: "18px", color: todayClass }}>{lunarDate.toDate().getDate()}</span>
         <br />
-        <span style={{ fontSize: "12px" }}>
+        <span style={{ fontSize: "12px", color: todayClass}}>
           {lunarDate.day == 1 ? lunarDate.format('M') : lunarDate.format('D')}
         </span>
         <br />
-        <span style={{ fontSize: "12px" }}>
+        <span style={{ fontSize: "12px", color: todayClass }}>
           {star}
         </span>
       </p>
