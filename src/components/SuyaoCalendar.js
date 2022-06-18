@@ -14,7 +14,7 @@ function SuyaoDayCell(props) {
   const nowDate = lunar(new Date())
   // console.log("🚀 ~ file: SuyaoCalendar.js ~ line 15 ~ SuyaoDayCell ~ nowDate", nowDate)
   // console.log("🚀 ~ file: SuyaoCalendar.js ~ line 14 ~ SuyaoDayCell ~ lunarDate", lunarDate)
-  let star = suyao.getStar(lunarDate.month, lunarDate.day);
+  let star = suyao.getStar(lunarDate.month + 1, lunarDate.day);
   let todayClass = '#000';
   if(lunarDate.year === nowDate.year && lunarDate.month === nowDate.month && lunarDate.day === nowDate.day){
     todayClass = '#f00';
