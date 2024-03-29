@@ -9,13 +9,14 @@ import { getZangli } from '../utils/zangli'
  * @param {Object} props
  */
 function SuyaoDayCell(props) {
-  const [isShowTodayInfo, setShowTodayInfo] = useState(false);
+  const [todayInfoIndex, setShowTodayInfo] = useState(0);
+  const TODAY_INFO_NUM = 3
   const { date } = props;
   let suyao = new SuyaoMap();
   const lunarDate = lunar(date);
   const nowDate = lunar(new Date())
-  // console.log("🚀 ~ file: SuyaoCalendar.js ~ line 15 ~ SuyaoDayCell ~ nowDate", nowDate)
-  // console.log("🚀 ~ file: SuyaoCalendar.js ~ line 14 ~ SuyaoDayCell ~ lunarDate", lunarDate)
+  console.log("🚀 ~ file: SuyaoCalendar.js ~ line 15 ~ SuyaoDayCell ~ nowDate", nowDate)
+  console.log("🚀 ~ file: SuyaoCalendar.js ~ line 14 ~ SuyaoDayCell ~ lunarDate", lunarDate)
   let zl = getZangli(date)
   console.log(`🚀 ~ ${date} SuyaoDayCell ~ zl:`, zl)
   let extraInfo = zl.extraInfo
@@ -29,9 +30,27 @@ function SuyaoDayCell(props) {
     todayClass = '#00f';
   }
   const showTodayInfo = () => {
-    setShowTodayInfo(!isShowTodayInfo);
+    setShowTodayInfo((todayInfoIndex + 1) % TODAY_INFO_NUM);
   }
   console.log("🚀 ~ file: SuyaoCalendar.js ~ line 39 ~ SuyaoDayCell ~ todayClass", todayClass)
+  let todayInfo = ''
+  console.log('todayInfoIndex', todayInfoIndex);
+  if (todayInfoIndex === 2) {
+    todayInfo = (
+      <div className=" absolute top-0 right-0 bg-white">
+        <div>{extraInfo}</div>
+        <div>{extraInfo2}</div>
+      </div>
+    )
+  } else if(todayInfoIndex === 1) {
+    let [dayName, isNice, godName, niceTime ] = suyao.getGodName(lunarDate.day)
+    todayInfo = (
+      <div className=" absolute w-full top-0 right-0 bg-white text-center">
+        <div>{dayName} {isNice}</div>
+        <div>{godName}</div>
+        <div>{niceTime}</div>
+      </div>)
+  }
   return (
     <div className="border p-3 block w-24 h-24 text-center relative" onClick={showTodayInfo}>
       <p>
@@ -46,13 +65,7 @@ function SuyaoDayCell(props) {
         </span>
       </p>
       {
-        isShowTodayInfo ?
-        (
-          <div className=" absolute top-0 right-0 bg-white">
-            <div>{extraInfo}</div>
-            <div>{extraInfo2}</div>
-          </div>
-        ): ''
+        todayInfo
       }
     </div>
   );
