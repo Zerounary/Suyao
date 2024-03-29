@@ -2,26 +2,38 @@ import React, { useState } from "react";
 import SuyaoMap from "./../utils/SuyaoMap";
 import lunar from "lunar";
 import moment from "moment";
+import { getZangli } from '../utils/zangli'
 
 /**
  * 展示一日的宿曜日历
  * @param {Object} props
  */
 function SuyaoDayCell(props) {
+  const [isShowTodayInfo, setShowTodayInfo] = useState(false);
   const { date } = props;
   let suyao = new SuyaoMap();
   const lunarDate = lunar(date);
   const nowDate = lunar(new Date())
   // console.log("🚀 ~ file: SuyaoCalendar.js ~ line 15 ~ SuyaoDayCell ~ nowDate", nowDate)
   // console.log("🚀 ~ file: SuyaoCalendar.js ~ line 14 ~ SuyaoDayCell ~ lunarDate", lunarDate)
+  let zl = getZangli(date)
+  console.log(`🚀 ~ ${date} SuyaoDayCell ~ zl:`, zl)
+  let extraInfo = zl.extraInfo
+  let extraInfo2 = zl.extraInfo2
   let star = suyao.getStar(lunarDate.month + 1, lunarDate.day);
   let todayClass = '#000';
   if(lunarDate.year === nowDate.year && lunarDate.month === nowDate.month && lunarDate.day === nowDate.day){
     todayClass = '#f00';
   }
+  if(extraInfo) {
+    todayClass = '#00f';
+  }
+  const showTodayInfo = () => {
+    setShowTodayInfo(!isShowTodayInfo);
+  }
   console.log("🚀 ~ file: SuyaoCalendar.js ~ line 39 ~ SuyaoDayCell ~ todayClass", todayClass)
   return (
-    <div className="border p-3 block w-24 h-24 text-center">
+    <div className="border p-3 block w-24 h-24 text-center relative" onClick={showTodayInfo}>
       <p>
         <span style={{ fontSize: "18px", color: todayClass }}>{lunarDate.toDate().getDate()}</span>
         <br />
@@ -33,6 +45,15 @@ function SuyaoDayCell(props) {
           {star}
         </span>
       </p>
+      {
+        isShowTodayInfo ?
+        (
+          <div className=" absolute top-0 right-0 bg-white">
+            <div>{extraInfo}</div>
+            <div>{extraInfo2}</div>
+          </div>
+        ): ''
+      }
     </div>
   );
 }
