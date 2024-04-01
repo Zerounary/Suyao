@@ -46,6 +46,18 @@ class SuyaoMap {
       ['勇猛日', '○', '药叉大将下', '日凶恶时'],
       ['吉祥日', ' ', '魂灵神下'],
     ]
+    this.zhai = {
+      1: '斋',
+      8: '斋',
+      14: '斋',
+      15: '斋',
+      18: '斋',
+      23: '斋',
+      24: '斋',
+      28: '斋',
+      29: '斋',
+      30: '斋',
+    }
   }
   /**
    * 根据月名返回当宿曜月历
@@ -115,6 +127,10 @@ class SuyaoMap {
 
   getGodName = (day) => {
     return this.god[day-1]
+  }
+  
+  getZhaiName = (day) => {
+    return this.zhai[day-1] || ''
   }
 
 }

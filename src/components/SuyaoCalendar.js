@@ -15,10 +15,10 @@ function SuyaoDayCell(props) {
   let suyao = new SuyaoMap();
   const lunarDate = lunar(date);
   const nowDate = lunar(new Date())
-  console.log("🚀 ~ file: SuyaoCalendar.js ~ line 15 ~ SuyaoDayCell ~ nowDate", nowDate)
-  console.log("🚀 ~ file: SuyaoCalendar.js ~ line 14 ~ SuyaoDayCell ~ lunarDate", lunarDate)
+  // console.log("🚀 ~ file: SuyaoCalendar.js ~ line 15 ~ SuyaoDayCell ~ nowDate", nowDate)
+  // console.log("🚀 ~ file: SuyaoCalendar.js ~ line 14 ~ SuyaoDayCell ~ lunarDate", lunarDate)
   let zl = getZangli(date)
-  console.log(`🚀 ~ ${date} SuyaoDayCell ~ zl:`, zl)
+  // console.log(`🚀 ~ ${date} SuyaoDayCell ~ zl:`, zl)
   let extraInfo = zl.extraInfo
   let extraInfo2 = zl.extraInfo2
   let star = suyao.getStar(lunarDate.month + 1, lunarDate.day);
@@ -32,9 +32,8 @@ function SuyaoDayCell(props) {
   const showTodayInfo = () => {
     setShowTodayInfo((todayInfoIndex + 1) % TODAY_INFO_NUM);
   }
-  console.log("🚀 ~ file: SuyaoCalendar.js ~ line 39 ~ SuyaoDayCell ~ todayClass", todayClass)
+  let zhai = suyao.getZhaiName(lunarDate.day)
   let todayInfo = ''
-  console.log('todayInfoIndex', todayInfoIndex);
   if (todayInfoIndex === 2) {
     todayInfo = (
       <div className=" absolute top-0 right-0 bg-white">
@@ -54,7 +53,7 @@ function SuyaoDayCell(props) {
   return (
     <div className="border p-3 block w-24 h-24 text-center relative" onClick={showTodayInfo}>
       <p>
-        <span style={{ fontSize: "18px", color: todayClass }}>{lunarDate.toDate().getDate()}</span>
+        <span style={{ fontSize: "18px", color: todayClass }}>{lunarDate.toDate().getDate()} <span style={{fontSize: '9px'}}>{zhai}</span></span>
         <br />
         <span style={{ fontSize: "12px", color: todayClass}}>
           {lunarDate.day == 1 ? lunarDate.format('M') : lunarDate.format('D')}
@@ -106,9 +105,9 @@ function SuyaoCalendar(props) {
     setStartDay(newStartDay)
   };
   let renderDay = moment(startDay).startOf("month").startOf("week");
-  console.log(renderDay.format("YYYYMMDD"))
-  console.log('currentYear', currentYear);
-  console.log('currentMonth', currentMonth);
+  // console.log(renderDay.format("YYYYMMDD"))
+  // console.log('currentYear', currentYear);
+  // console.log('currentMonth', currentMonth);
   return (
     <div>
       <div>
