@@ -51,7 +51,7 @@ function SuyaoDayCell(props) {
       </div>)
   }
   return (
-    <div className="border p-3 block w-24 h-24 text-center relative" onClick={showTodayInfo}>
+    <div className="border p-2 sm:p-3 block w-14 h-14 sm:w-24 sm:h-24 text-center relative select-none" onClick={showTodayInfo}>
       <p>
         <span style={{ fontSize: "18px", color: todayClass }}>{lunarDate.toDate().getDate()} <span style={{fontSize: '9px'}}>{zhai}</span></span>
         <br />
@@ -110,8 +110,9 @@ function SuyaoCalendar(props) {
   // console.log('currentMonth', currentMonth);
   return (
     <div>
-      <div>
+      <div className="flex flex-wrap gap-2 items-center mb-3">
         <select
+            className="rounded-md border border-gray-300 bg-white px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={currentYear}
             onChange={onYearChange}
           >
@@ -122,6 +123,7 @@ function SuyaoCalendar(props) {
             }
           </select>
           <select
+            className="rounded-md border border-gray-300 bg-white px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={currentMonth}
             onChange={onMonthChange}
           >
@@ -132,14 +134,16 @@ function SuyaoCalendar(props) {
             }
           </select>
       </div>
-      <div className="grid grid-cols-7 divide-x divide-green-200" style={{ width: "42rem" }}>
-        {["一", "二", "三", "四", "五", "六", "日"].map((e) => {
-          return <div className="text-center bg-blue-500 text-white" style={{ width: "6rem" }}>{e}</div>;
-        })}
-        {new Array(6 * 7).fill("").map((e) => {
-          renderDay.add(1, "days");
-          return <SuyaoDayCell date={renderDay.toDate()} />;
-        })}
+      <div className="overflow-x-auto">
+        <div className="grid grid-cols-7 divide-x divide-green-200 min-w-[26rem] sm:min-w-[42rem]">
+          {["一", "二", "三", "四", "五", "六", "日"].map((e) => {
+            return <div key={e} className="text-center bg-blue-500 text-white py-1 text-sm sm:text-base">{e}</div>;
+          })}
+          {new Array(6 * 7).fill("").map((e, idx) => {
+            renderDay.add(1, "days");
+            return <SuyaoDayCell key={idx} date={renderDay.toDate()} />;
+          })}
+        </div>
       </div>
     </div>
   );

@@ -10,6 +10,7 @@ function SimpleSuyaoChart(props){
     console.log('e', e);
     setValue(e.currentTarget.value);
   }
+
   let onTextChange = (e) => {
     console.log('e', e);
     let dateStr = e.currentTarget.value;
@@ -22,11 +23,12 @@ function SimpleSuyaoChart(props){
     }
   }
   return (
-    <div className="App" >
-      <div className="grid grid-cols-6 gap-4">
-        <div>
-          <label>宿曜：</label>
+    <div className="App px-3 sm:px-6 py-4" >
+      <div className="grid grid-cols-1 sm:grid-cols-6 gap-3 sm:gap-4">
+        <div className="sm:col-span-3">
+          <label className="block text-sm font-medium text-gray-700 mb-1">宿曜</label>
           <select
+            className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={value}
             onChange={onSelectChange}
           >
@@ -37,15 +39,27 @@ function SimpleSuyaoChart(props){
             }
           </select>
         </div>
-        <div>
-          <label>农历：</label>
-          <input type="text" placeholder="4-2" onChange={onTextChange} ></input>
+        <div className="sm:col-span-3">
+          <label className="block text-sm font-medium text-gray-700 mb-1">农历</label>
+          <input
+            className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+            type="text"
+            placeholder="4-2"
+            inputMode="numeric"
+            onChange={onTextChange}
+          ></input>
         </div>
-        <div className="col-span-6">
-          <SuyaoTable star={value} />
+        <div className="sm:col-span-6">
+          <div className="rounded-lg border border-gray-200 bg-white p-2 sm:p-4 shadow-sm">
+            <SuyaoTable star={value} />
+          </div>
         </div>
       </div>
-      <SuayoCalendar />
+      <div className="mt-4 sm:mt-6">
+        <div className="rounded-lg border border-gray-200 bg-white p-2 sm:p-4 shadow-sm">
+          <SuayoCalendar />
+        </div>
+      </div>
     </div>
   );
 }

@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "@umijs/hooks": "^1.9.2",
     "axios": "^0.21.1",
+    "cross-env": "^7.0.3",
     "lodash": "^4.17.21",
     "lunar": "^0.0.3",
     "moment": "^2.29.1",
@@ -16,9 +17,9 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
+    "test": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
