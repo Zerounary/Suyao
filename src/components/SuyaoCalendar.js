@@ -51,8 +51,8 @@ function SuyaoDayCell(props) {
       </div>)
   }
   return (
-    <div className="border p-2 sm:p-3 block w-14 h-14 sm:w-24 sm:h-24 text-center relative select-none" onClick={showTodayInfo}>
-      <p>
+    <div className="p-2 sm:p-3 block h-14 sm:h-24 text-center relative select-none bg-white flex flex-col items-center justify-center" onClick={showTodayInfo}>
+      <p className="m-0 leading-tight">
         <span style={{ fontSize: "18px", color: todayClass }}>{lunarDate.toDate().getDate()} <span style={{fontSize: '9px'}}>{zhai}</span></span>
         <br />
         <span style={{ fontSize: "12px", color: todayClass}}>
@@ -135,7 +135,7 @@ function SuyaoCalendar(props) {
           </select>
       </div>
       <div className="overflow-x-auto">
-        <div className="grid grid-cols-7 divide-x divide-green-200 min-w-[26rem] sm:min-w-[42rem]">
+        <div className="grid grid-cols-7 gap-px bg-green-200 min-w-[26rem] sm:min-w-[42rem]">
           {["一", "二", "三", "四", "五", "六", "日"].map((e) => {
             return <div key={e} className="text-center bg-blue-500 text-white py-1 text-sm sm:text-base">{e}</div>;
           })}
